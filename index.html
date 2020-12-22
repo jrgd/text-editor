@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Editor</title>
+  <script type="text/javascript" src='./node_modules/jquery/dist/jquery.min.js'></script>
+  <script type="text/javascript" src='./node_modules/@accursoft/jquery-caret/jquery.caret.js'></script>
+  <script type="text/javascript">
+    
+    $(document).ready(function(){
+      assign_keyboard_events();
+    });
+
+    function assign_keyboard_events() {
+      $('ol.lines_container li').on('keydown', function(event){
+        console.log(event.which);
+        console.log(event);
+
+        switch(true) {
+          case event.which == 37:
+            // move cursor: to the left
+            console.log( $('ol.lines_container li:focus').caret() );
+            // if first char, it focus to the last char on the previous line
+            break;
+          case event.which == 38:
+            console.log( $('ol.lines_container li:focus').caret() );
+            // move cursor: to the top
+            // focus = previous element if not multi line
+            // keep the current column in memory
+            break;
+          case event.which == 39:
+            console.log( $('ol.lines_container li:focus').caret() );
+            // move cursor: to the right
+            // if last char, it focus on the first char of the next line
+            break;
+          case event.which == 40:
+            console.log( $('ol.lines_container li:focus').caret() );
+            // move cursor: to the bottom
+            // focus = next element if not multi line
+            // keep the current column in memory
+            break;
+          
+
+          case event.key == '<':
+            var current_text = $('ol.lines_container li:focus').text();
+            $('ol.lines_container li:focus').text(current_text + '>');
+            break;
+          case event.key == '[':
+            var current_text = $('ol.lines_container li:focus').text();
+            $('ol.lines_container li:focus').text(current_text + ']');
+            break;
+          case event.key == '{':
+            var current_text = $('ol.lines_container li:focus').text();
+            $('ol.lines_container li:focus').text(current_text + '}');
+            break;
+          case event.key == '(':
+            var current_text = $('ol.lines_container li:focus').text();
+            $('ol.lines_container li:focus').text(current_text + ')');
+            break;
+          case event.key == '"':
+            var current_text = $('ol.lines_container li:focus').text();
+            $('ol.lines_container li:focus').text(current_text + '"');
+            break;
+          case event.key == "'":
+            var current_text = $('ol.lines_container li:focus').text();
+            $('ol.lines_container li:focus').text(current_text + "'");
+            break;
+
+          // DEL
+          // COMMAND
+            // X, C, V
+          // CONTROL + KEYS
+          // SHIFT
+            // select text
+          // TAB
+            // manage indentation
+          // RETURN
+          case event.which == 13:
+            event.preventDefault();
+
+            // if we are in the middle of a line
+            var cursor_position = $('ol.lines_container li:focus').caret();
+            var line_string_length = $('ol.lines_container li:focus').text().length;
+            var new_line_text = $('ol.lines_container li:focus').text().substr(cursor_position, line_string_length);
+            var current_line_text = $('ol.lines_container li:focus').text().substr(0, cursor_position);
+            //
+            $('ol.lines_container li:focus').text(current_line_text);
+            console.log( cursor_position );
+            console.log( line_string_length );
+            var new_line = $('<li contenteditable>');
+              new_line.insertAfter('ol.lines_container li:focus');
+              new_line.text(new_line_text)
+              new_line.focus();
+              assign_keyboard_events()
+            break;
+
+          // ANYTHING ELSE
+          default:
+            // var line_text_content = $('ol.lines_container li:focus').text();
+            // $('ol.lines_container li:focus').text(line_text_content + String.fromCharCode(event.which) );
+            break;
+        }
+
+      })
+    }
+  </script>
+  <style type="text/css">
+    body {
+      background-color: black;
+      color: lightgrey;
+    }
+    ol.lines_container li:before {
+      color: #333;
+      content: counter(list) ".";
+      left: -32px;
+      position: absolute;
+      text-align: right;
+      width: 30px;
+    }
+    ol.lines_container li {
+      counter-increment: list;
+      list-style-type: none;
+      position: relative;
+      font-family: monospace;
+    }
+
+    ol.lines_container li:focus {
+      background-color: #333;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id='text_block'>
+  
+  <ol class='lines_container'>
+    <li contentEditable></li>
+  </ol>
+</div>
+
+<div id='preview_block'></div>
+
+</body>
+</html>
