@@ -14,12 +14,29 @@ Things to ponder: how things work in general
 
 Things to work on next
 - [ ] make it possible to write the code of this text editor within itself, asap
+- [ ] Editor
+  - [ ] Delete a line
+  - [ ] Select across multiple lines
+    - [ ] shortcuts, point-and-click
+    - [ ] examples: Nano/Vim, Notion.so, Sublime Text, Acme (Plan9), Ed, Sam (text-command-language vs mouse-command-language)
 - [ ] real time preview
   - how to assemble the content of the <li> into a single text and interpret it
       - js: can use eval()
       - how to design the ability to change the language: svg, css, html, js etc.
 - [ ] save and open file
-- [ ] text selection, shortcuts and meta actions (move this line up, convert upper/lowercase, prettify JSON, fold/unfold, etc); establish a list
+- [ ] text selection, shortcuts and meta actions (
+  - move this line up, 
+  - convert upper/lowercase, 
+  - prettify JSON, 
+  - fold/unfold section, 
+  - indentation
+  - multiple panes(i3)/tabs/files 
+  - Languages
+    - Markdown
+    - SVG
+    - Javascript
+    - Three.js
+  - continue: establishing a list
 
 Some features to be considered:
 - preview of the code; similar to Codepen
@@ -27,12 +44,15 @@ Some features to be considered:
   - how to implement/link with git in mind
 - preview could have specific feature for SVG, like  with point and click to select code element, coordinates of points, etc
 - open/save file; with the Filesystem API; export content
-- SVG Generate tool used a Nodejs backend to manipulate the files freely
+- previous experiments. and tools 
+  - SVG Generate tool used a Nodejs backend to manipulate the files freely
   - SVG Generate tools https://github.com/jrgd/svg-generate
-- Creative Coding workshop — assignments nopt published yet
+  - Notes app
+  - Creative Codepending workshop — assignments not published yet
 - Filesystem API https://developer.mozilla.org/en-US/docs/Web/API/FileSystem#Browser_compatibility
 - Syntax Highlighter https://github.com/victorqribeiro/syntax
 - HTML5 contentEditable https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
+- Notion.so
 
 Some background thoughts
 - https://tom.preston-werner.com/2010/08/23/readme-driven-development.html
