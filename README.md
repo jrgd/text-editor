@@ -15,6 +15,10 @@ Things to ponder: how things work in general
 Things to work on next
 - [ ] make it possible to write the code of this text editor within itself, asap
   - [X] multi-lines text paste
+  - [-] cursor moves left, right, up, bottom
+    - [ ] control columns when goign up/down
+      - is it possible for the selection to be decoupled from focus and typing cursor
+      - click for selection: presently this will change the column
   - [ ] multi-lines text copy
     - issue might be similar to difficult selection issue on Notion.so 
   - [ ] multi-lines file import

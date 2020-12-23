@@ -24,24 +24,44 @@
         switch(true) {
           case event.which == 37:
             // move cursor: to the left
-            console.log( $('ol.lines_container li:focus').caret() );
+            var line_string_length = $('ol.lines_container li:focus').text().length;
+            var cursor_position = $('ol.lines_container li:focus').caret();
+            console.log( line_string_length, cursor_position );
+            console.log($('ol.lines_container li:focus').index() );
             // if first char, it focus to the last char on the previous line
+            if ($('ol.lines_container li:focus').index() > 0) {
+              if (cursor_position == 0) {
+                $('ol.lines_container li:focus').prev().focus();
+                line_string_length = $('ol.lines_container li:focus').text().length;
+                $('ol.lines_container li:focus').caret(line_string_length + 1 ); //-1)
+              }
+            }
             break;
           case event.which == 38:
             console.log( $('ol.lines_container li:focus').caret() );
             // move cursor: to the top
             // focus = previous element if not multi line
+            $('ol.lines_container li:focus').prev().focus();
             // keep the current column in memory
             break;
           case event.which == 39:
-            console.log( $('ol.lines_container li:focus').caret() );
             // move cursor: to the right
+            var line_string_length = $('ol.lines_container li:focus').text().length;
+            var cursor_position = $('ol.lines_container li:focus').caret();
+            console.log( line_string_length, cursor_position );
             // if last char, it focus on the first char of the next line
+            if ($('ol.lines_container li:focus').index() < $('ol.lines_container li').length-1 ) {
+              if (cursor_position >= line_string_length) {
+                $('ol.lines_container li:focus').next().focus();
+                $('ol.lines_container li:focus').caret(0);
+              }  
+            }
             break;
           case event.which == 40:
             console.log( $('ol.lines_container li:focus').caret() );
             // move cursor: to the bottom
             // focus = next element if not multi line
+            $('ol.lines_container li:focus').next().focus();
             // keep the current column in memory
             break;
           
