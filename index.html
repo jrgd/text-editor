@@ -13,7 +13,7 @@
     function assign_keyboard_events() {
       $('ol.lines_container li').on('keydown', function(event){
         console.log(event.which);
-        console.log(event);
+        // console.log(event);
 
         switch(true) {
           case event.which == 37:
@@ -91,9 +91,9 @@
           // TAB
             // manage indentation
           // RETURN
-          case event.which == 13:
+          case event.originalEvent.which == 13:
             event.preventDefault();
-
+            console.log('RETURN');
             // if we are in the middle of a line
             var cursor_position = $('ol.lines_container li:focus').caret();
             var line_string_length = $('ol.lines_container li:focus').text().length;
