@@ -18,7 +18,13 @@ Things to work on next
   - [ ] multi-lines text copy
     - issue might be similar to difficult selection issue on Notion.so 
   - [ ] multi-lines file import
+  - [ ] multi files opened; tabs?
   - [ ] save and open files
+  - [ ] keep the file when the page is reloaded; webstorage api
+  - [ ] use an automated workflow; webpack/grunt/gulp to watch the files; use browsersync
+- [ ] Document 
+  - the use of Valet
+  - the use of the console; plan/think the real need for an internal console
 - [ ] Editor
   - [ ] Delete a line
   - [ ] Select across multiple lines
