@@ -5,15 +5,21 @@
   <script type="text/javascript" src='./node_modules/jquery/dist/jquery.min.js'></script>
   <script type="text/javascript" src='./node_modules/@accursoft/jquery-caret/jquery.caret.js'></script>
   <script type="text/javascript">
-    
+    var clipTextArr;
+
     $(document).ready(function(){
       assign_keyboard_events();
     });
 
-    function assign_keyboard_events() {
-      $('ol.lines_container li').on('keydown', function(event){
-        console.log(event.which);
-        // console.log(event);
+    function assign_keyboard_events( new_line_inserted) {
+
+      if (new_line_inserted == null) {
+        target = $('ol.lines_container li');
+      } else {
+        target = new_line_inserted
+      }
+      target.on('keydown', function(event){
+        console.log(event.which, event.metaKey);
 
         switch(true) {
           case event.which == 37:
@@ -39,22 +45,22 @@
             // keep the current column in memory
             break;
           
-          case event.which = 86 && event.metaKey == true:
+          case (event.which == 86 && event.metaKey == true):
             // paste: cmd+V
             event.preventDefault();
+            clipTextArr = [];
             navigator.clipboard.readText().then( // to use the clipbopard we need to be in https
               (clipTextStr) => {
                 clipTextArr = clipTextStr.split('\n');
-                jQuery.each(clipTextArr, function(index, clipText_singleLine){
+                clipTextArr.forEach(function(clipText_singleLine, index, clipTextArr){
                   var new_line = $('<li contenteditable>');
                     new_line.insertAfter('ol.lines_container li:focus');
                     new_line.text(clipText_singleLine)
-                    new_line.focus();
-                    assign_keyboard_events()
+                    new_line.focus();  
+                    assign_keyboard_events( new_line );
                 })
               }
             );
-
             break;
 
           case event.key == '<':
@@ -107,7 +113,7 @@
               new_line.insertAfter('ol.lines_container li:focus');
               new_line.text(new_line_text)
               new_line.focus();
-              assign_keyboard_events()
+              assign_keyboard_events( new_line );
             break;
 
           // ANYTHING ELSE
@@ -138,6 +144,8 @@
       list-style-type: none;
       position: relative;
       font-family: monospace;
+      white-space: pre;
+      unicode-bidi: embed;
     }
 
     ol.lines_container li:focus {
