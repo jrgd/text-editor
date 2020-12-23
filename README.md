@@ -14,6 +14,11 @@ Things to ponder: how things work in general
 
 Things to work on next
 - [ ] make it possible to write the code of this text editor within itself, asap
+  - [ ] multi-lines text paste
+  - [ ] multi-lines text copy
+    - issue might be similar to difficult selection issue on Notion.so 
+  - [ ] multi-lines file import
+  - [ ] save and open files
 - [ ] Editor
   - [ ] Delete a line
   - [ ] Select across multiple lines
@@ -23,7 +28,6 @@ Things to work on next
   - how to assemble the content of the <li> into a single text and interpret it
       - js: can use eval()
       - how to design the ability to change the language: svg, css, html, js etc.
-- [ ] save and open file
 - [ ] text selection, shortcuts and meta actions (
   - move this line up, 
   - convert upper/lowercase, 
@@ -59,6 +63,10 @@ Some background thoughts
 - https://www.simonewebdesign.it/how-to-make-browser-editor-with-html5-contenteditable/
 - https://web.eecs.utk.edu/~azh/blog/challengingprojects.html
 
+Notes
+- Shortcurts with combo keys:
+  The event object has a metaKey property that can be tested along the keycode liek so:
+  ```case event.which = 86 && event.metaKey == true:``
 
 
 ----
