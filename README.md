@@ -14,7 +14,7 @@ Things to ponder: how things work in general
 
 Things to work on next
 - [ ] make it possible to write the code of this text editor within itself, asap
-  - [ ] multi-lines text paste
+  - [X] multi-lines text paste
   - [ ] multi-lines text copy
     - issue might be similar to difficult selection issue on Notion.so 
   - [ ] multi-lines file import
