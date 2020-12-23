@@ -39,6 +39,23 @@
             // keep the current column in memory
             break;
           
+          case event.which = 86 && event.metaKey == true:
+            // paste: cmd+V
+            event.preventDefault();
+            navigator.clipboard.readText().then( // to use the clipbopard we need to be in https
+              (clipTextStr) => {
+                clipTextArr = clipTextStr.split('\n');
+                jQuery.each(clipTextArr, function(index, clipText_singleLine){
+                  var new_line = $('<li contenteditable>');
+                    new_line.insertAfter('ol.lines_container li:focus');
+                    new_line.text(clipText_singleLine)
+                    new_line.focus();
+                    assign_keyboard_events()
+                })
+              }
+            );
+
+            break;
 
           case event.key == '<':
             var current_text = $('ol.lines_container li:focus').text();
